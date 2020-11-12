@@ -1,5 +1,9 @@
 <template>
   <div> 
+    <h1>
+      Me falló pero no importa
+    </h1>
+    <hr>
     <ol>
       <li v-for="message in messages" :key="message._id">
         {{message.text}}
@@ -9,21 +13,20 @@
 </template>
 
 <script>
-
 export default {
   name: "App",
   data() {
 
-    return {
 
+    return {
       messages: []
-      
     };
     
   },
   async mounted() {
-    
-    this.messages = await( await fetch(getApiUrl() + 'welcome')).json();
+        
+    let response = await( await fetch(getApiUrl() + 'welcome')).json();
+    this.messages = response;
 
   }
 };
@@ -36,5 +39,6 @@ function getApiUrl() {
     requestUrl = "/api/";
   }
   return requestUrl;
-}
+}	
+
 </script>
